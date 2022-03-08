@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.axios.get('http://localhost:8000/buscar-async').then(function (response) {
+    this.axios.get('http://localhost:8000/buscar-nome-async').then(function (response) {
       _this.funcionarios = response.data;
       console.log(_this.funcionarios);
     });

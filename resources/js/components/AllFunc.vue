@@ -71,7 +71,7 @@
 
         mounted(){
             this.axios
-                .get('http://localhost:8000/buscar-async')
+                .get('http://localhost:8000/buscar-nome-async')
                 .then(response => {
                     this.funcionarios = response.data;
                     console.log(this.funcionarios);
