@@ -21,23 +21,6 @@ class FuncionarioController extends Controller
         return $collection;
     }
 
-    function listar(){
-        $collection = $this->importarDados();
-        return view('carrega-csv',['funcionarios' => $collection]);
-    }
-
-    function buscarPorNome($nome){
-        $collection = $this->importarDados();
-        $result = $collection->where('nome',$nome);
-        return view('carrega-csv',['funcionarios' => $result]);
-    }
-
-    function buscarPorEmail($email){
-        $collection = $this->importarDados();
-        $result = $collection->where('email',$email);
-        return view('carrega-csv',['funcionarios' => $result]);
-    }
-
     function buscarPorNomeAsync($nome = null){
         $collection = $this->importarDados();
         if($nome != ""){

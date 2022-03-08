@@ -18,10 +18,6 @@ Route::get('/', function () {
     return view('layout.app');
 });
 
-//primeiras três rotas para testar a aplicação, sem layout ou vue.js
-Route::get("listar", 'FuncionarioController@listar');
-Route::get("buscar-nome/{nome}", 'FuncionarioController@buscarPorNome');
-Route::get("buscar-email/{email}", 'FuncionarioController@buscarPorEmail');
 
 //método que carrega o formulário e outro para fazer a busca
 Route::get("buscar-nome-async/{palavra?}", 'FuncionarioController@buscarPorNomeAsync');
