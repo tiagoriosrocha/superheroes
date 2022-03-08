@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.app');
 });
 
 
 Route::get("listar", 'FuncionarioController@listar');
+Route::get("buscar-async", 'FuncionarioController@listarAsync');
+
 Route::get("buscar-nome/{nome}", 'FuncionarioController@buscarPorNome');
 Route::get("buscar-email/{email}", 'FuncionarioController@buscarPorEmail');
 
 Route::get("buscar-nome-form", 'FuncionarioController@carregaFormularioBusca');
-Route::get("buscar-nome-async/{palavra}", 'FuncionarioController@buscarPorNomeAsync');
+Route::get("buscar-nome-async/{palavra?}", 'FuncionarioController@buscarPorNomeAsync');
