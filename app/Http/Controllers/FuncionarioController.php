@@ -26,11 +26,6 @@ class FuncionarioController extends Controller
         return view('carrega-csv',['funcionarios' => $collection]);
     }
 
-    function listarAsync(){
-        $collection = $this->importarDados();
-        return json_encode($collection);
-    }
-
     function buscarPorNome($nome){
         $collection = $this->importarDados();
         $result = $collection->where('nome',$nome);
@@ -43,10 +38,6 @@ class FuncionarioController extends Controller
         return view('carrega-csv',['funcionarios' => $result]);
     }
 
-    function carregaFormularioBusca(){
-        return view('form-busca');
-    }
-
     function buscarPorNomeAsync($nome = null){
         $collection = $this->importarDados();
         if($nome != ""){
@@ -55,4 +46,5 @@ class FuncionarioController extends Controller
         }
         return $collection;
     }
+
 }
