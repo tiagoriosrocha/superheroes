@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 
 //método que carrega o formulário e outro para fazer a busca
-Route::get("buscar-nome-async/{palavra?}", 'FuncionarioController@buscarPorNomeAsync');
+Route::get("buscar-nome-async/{palavra?}", 'SuperHeroController@buscarPorNomeAsync');

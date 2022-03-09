@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Buscar Funcionários</div>
+                    <div class="card-header">Buscar Super-Herói</div>
 
                     <div class="card-body">
                         <form>
@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div v-if="funcionarios.length > 0">
+                    <div v-if="superheroes.length > 0">
                     <div class="card-body">
                         
                         <table class="table">
@@ -35,16 +35,22 @@
                             <tr>
                               <th scope="col">#</th>
                               <th scope="col">Nome</th>
-                              <th scope="col">E-mail</th>
-                              <th scope="col">Idade</th>
+                              <th scope="col">Raça</th>
+                              <th scope="col">Editora</th>
+                              <th scope="col">Alinhamento</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr v-for="func in funcionarios" :key="funcionarios.id">
-                              <th scope="row">{{func.id}}</th>
-                              <td>{{func.nome}}</td>
-                              <td>{{func.email}}</td>
-                              <td>{{func.idade}}</td>
+                            <tr v-for="sh in superheroes" :key="superheroes.id">
+                              <th scope="row">{{sh.id}}</th>
+                              <td>{{sh.nome}}</td>
+                              <td>{{sh.raca}}</td>
+                              <td>{{sh.editora}}</td>
+                              <td>
+                                <span v-if="sh.alinhamento == 'good'" class="badge badge-primary">GOOD</span>
+                                <span v-else-if="sh.alinhamento == 'bad'" class="badge badge-danger">BAD</span>
+                                <span v-else class="badge badge-light">INDEFINED</span>
+                              </td>
                             </tr>
                           </tbody>
                           </table>
@@ -65,7 +71,7 @@
         data () {
             return {
                 campobusca: "",
-                funcionarios: []
+                superheroes: []
             }
         },
 
@@ -73,8 +79,7 @@
             this.axios
                 .get('http://localhost:8000/buscar-nome-async')
                 .then(response => {
-                    this.funcionarios = response.data;
-                    console.log(this.funcionarios);
+                    this.superheroes = response.data;
             });
         },
 
@@ -84,18 +89,20 @@
                     this.axios
                     .get('http://localhost:8000/buscar-nome-async')
                     .then(response => {
-                        this.funcionarios = response.data;
-                        console.log(this.funcionarios);
+                        this.superheroes = response.data;
                     });
             },
 
             buscar(event){
-                this.axios
-                    .get('http://localhost:8000/buscar-nome-async/' + this.campobusca)
-                    .then(response => {
-                        this.funcionarios = response.data;
-                        console.log(this.funcionarios);
-                    });
+                const arrayBusca = [];
+                for(var i=0; i<this.superheroes.length; i++){
+                    var sh = this.superheroes[i];
+                    var regex = new RegExp("^" + this.campobusca,'i');
+                    if(sh.nome.match(regex)){
+                        arrayBusca.push(sh);
+                    }
+                }
+                this.superheroes = arrayBusca;
             }
         }
     }

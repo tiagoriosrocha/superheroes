@@ -1969,19 +1969,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       campobusca: "",
-      funcionarios: []
+      superheroes: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     this.axios.get('http://localhost:8000/buscar-nome-async').then(function (response) {
-      _this.funcionarios = response.data;
-      console.log(_this.funcionarios);
+      _this.superheroes = response.data;
     });
   },
   methods: {
@@ -1989,17 +1994,22 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (this.campobusca == "") this.axios.get('http://localhost:8000/buscar-nome-async').then(function (response) {
-        _this2.funcionarios = response.data;
-        console.log(_this2.funcionarios);
+        _this2.superheroes = response.data;
       });
     },
     buscar: function buscar(event) {
-      var _this3 = this;
+      var arrayBusca = [];
 
-      this.axios.get('http://localhost:8000/buscar-nome-async/' + this.campobusca).then(function (response) {
-        _this3.funcionarios = response.data;
-        console.log(_this3.funcionarios);
-      });
+      for (var i = 0; i < this.superheroes.length; i++) {
+        var sh = this.superheroes[i];
+        var regex = new RegExp("^" + this.campobusca, 'i');
+
+        if (sh.nome.match(regex)) {
+          arrayBusca.push(sh);
+        }
+      }
+
+      this.superheroes = arrayBusca;
     }
   }
 });
@@ -37614,7 +37624,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _vm._v("Buscar Funcionários"),
+            _vm._v("Buscar Super-Herói"),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
@@ -37693,7 +37703,7 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
-          _vm.funcionarios.length > 0
+          _vm.superheroes.length > 0
             ? _c("div", [
                 _c("div", { staticClass: "card-body" }, [
                   _c("table", { staticClass: "table" }, [
@@ -37701,17 +37711,37 @@ var render = function () {
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.funcionarios, function (func) {
-                        return _c("tr", { key: _vm.funcionarios.id }, [
+                      _vm._l(_vm.superheroes, function (sh) {
+                        return _c("tr", { key: _vm.superheroes.id }, [
                           _c("th", { attrs: { scope: "row" } }, [
-                            _vm._v(_vm._s(func.id)),
+                            _vm._v(_vm._s(sh.id)),
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(func.nome))]),
+                          _c("td", [_vm._v(_vm._s(sh.nome))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(func.email))]),
+                          _c("td", [_vm._v(_vm._s(sh.raca))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(func.idade))]),
+                          _c("td", [_vm._v(_vm._s(sh.editora))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            sh.alinhamento == "good"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-primary" },
+                                  [_vm._v("GOOD")]
+                                )
+                              : sh.alinhamento == "bad"
+                              ? _c(
+                                  "span",
+                                  { staticClass: "badge badge-danger" },
+                                  [_vm._v("BAD")]
+                                )
+                              : _c(
+                                  "span",
+                                  { staticClass: "badge badge-light" },
+                                  [_vm._v("INDEFINED")]
+                                ),
+                          ]),
                         ])
                       }),
                       0
@@ -37740,9 +37770,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Nome")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("E-mail")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Raça")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Idade")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Editora")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Alinhamento")]),
       ]),
     ])
   },
