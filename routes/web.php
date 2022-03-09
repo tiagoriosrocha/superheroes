@@ -13,14 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//carrega a página principal com o componente vue.js dentro
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.app');
 });
 
 
-Route::get("listar", 'FuncionarioController@listar');
-Route::get("buscar-nome/{nome}", 'FuncionarioController@buscarPorNome');
-Route::get("buscar-email/{email}", 'FuncionarioController@buscarPorEmail');
-
-Route::get("buscar-nome-form", 'FuncionarioController@carregaFormularioBusca');
-Route::get("buscar-nome-async/{palavra}", 'FuncionarioController@buscarPorNomeAsync');
+//método que carrega o formulário e outro para fazer a busca
+Route::get("buscar-nome-async/{palavra?}", 'SuperHeroController@buscarPorNomeAsync');
