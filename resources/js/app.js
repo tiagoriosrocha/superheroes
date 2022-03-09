@@ -6,16 +6,21 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import Allfunc from './components/AllFunc.vue';
+import SuperHeroesList from './components/SuperHeroesList.vue';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
+import Vuetify from 'vuetify';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.use(VueAxios, axios);
+Vue.use(Vuetify); 
  
 const app = new Vue({
     el: '#app',
-    render: h => h(Allfunc),
+    vuetify: new Vuetify(),
+    render: h => h(SuperHeroesList),
 });
