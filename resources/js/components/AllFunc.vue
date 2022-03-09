@@ -49,7 +49,7 @@
                               <td>
                                 <span v-if="sh.alinhamento == 'good'" class="badge badge-primary">GOOD</span>
                                 <span v-else-if="sh.alinhamento == 'bad'" class="badge badge-danger">BAD</span>
-                                <span v-else class="badge badge-light">INDEFINED</span>
+                                <span v-else class="badge badge-light">UNDEFINED</span>
                               </td>
                             </tr>
                           </tbody>

@@ -37739,7 +37739,7 @@ var render = function () {
                               : _c(
                                   "span",
                                   { staticClass: "badge badge-light" },
-                                  [_vm._v("INDEFINED")]
+                                  [_vm._v("UNDEFINED")]
                                 ),
                           ]),
                         ])
